@@ -22,7 +22,7 @@ generator = AutoModelForCausalLM.from_pretrained(model_path,
     return_dict=True,
     cache_dir="/mnt/artifacts/llama2-model-cache/",
     torch_dtype=torch.float16,
-    device_map=device_map,
+    device_map='auto',
 )
 # load the tokenizer
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
@@ -35,21 +35,20 @@ def generate(prompt: str = None, new_tokens: int = 200):
         return 'Please provide a prompt.'
             
     # Construct the prompt for the model
-    prompt = prompt_template.format(dialogue=prompt)
+    user_input = prompt_template.format(dialogue=prompt)
     
     tokens_per_sec = 0
     start_time = time.perf_counter()
-    input_ids = tokenizer(test_sample, return_tensors="pt").input_ids
+    input_ids = tokenizer(user_input, return_tensors="pt").input_ids
     input_ids = input_ids.to('cuda')
-    max_new_tokens = 200
 
     generation_config = GenerationConfig(
             pad_token_id=tokenizer.pad_token_id,
-            max_new_tokens = max_new_tokens
+            max_new_tokens = new_tokens
         )
 
     with torch.no_grad():
-        generated_ids = model.generate(input_ids, generation_config=generation_config)
+        generated_ids = generator.generate(input_ids, generation_config=generation_config)
     
     gen_text = tokenizer.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     end_time = time.perf_counter()
