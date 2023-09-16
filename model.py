@@ -7,7 +7,7 @@ import torch
 import transformers
      
 from random import randint
-from transformers import AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import GenerationConfig 
      
 cuda_install_dir = '/'.join(nvidia.__file__.split('/')[:-1]) + '/cuda_runtime/lib/'
@@ -27,7 +27,7 @@ generator = AutoModelForCausalLM.from_pretrained(model_path,
 # load the tokenizer
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
 
-prompt_template = f"<s>[INST] {{prompt}} [/INST]"
+prompt_template = f"<s>[INST] {{dialogue}} [/INST]"
      
 #Generate the output from the LLM
 def generate(prompt: str = None, new_tokens: int = 200):
