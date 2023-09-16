@@ -56,7 +56,7 @@ generator = AutoModelForCausalLM.from_pretrained(model_path,
     return_dict=True,
     cache_dir="/mnt/artifacts/llama2-model-cache/",
     torch_dtype=torch.float16,
-    device_map=device_map,
+    device_map='auto',
 )
 # load the tokenizer
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
