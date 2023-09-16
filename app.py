@@ -23,20 +23,23 @@ def generate(prompt: str = None, new_tokens: int = 200):
     
     tokens_per_sec = 0
     start_time = time.perf_counter()
-    input_ids = tokenizer(user_input, return_tensors="pt").input_ids
-    input_ids = input_ids.to('cuda')
-
-    generation_config = GenerationConfig(
-            pad_token_id=tokenizer.pad_token_id,
-            max_new_tokens = new_tokens
-        )
-
-    with torch.no_grad():
-        generated_ids = generator.generate(input_ids, generation_config=generation_config)
+    gen_text = pipe_llama7b_chat(user_input)
     
-    gen_text = tokenizer.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
-    end_time = time.perf_counter()
-    gen_text = gen_text.replace(f"[INST] {prompt} [/INST]", '')
+#     input_ids = tokenizer(user_input, return_tensors="pt").input_ids
+#     input_ids = input_ids.to('cuda')
+
+#     generation_config = GenerationConfig(
+#             pad_token_id=tokenizer.pad_token_id,
+#             max_new_tokens = new_tokens
+#         )
+
+#     with torch.no_grad():
+#         generated_ids = generator.generate(input_ids, generation_config=generation_config)
+    
+#     gen_text = tokenizer.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
+#     end_time = time.perf_counter()
+#     gen_text = gen_text.replace(f"[INST] {prompt} [/INST]", '')
+
     tokens_per_sec = round(new_tokens / (end_time - start_time),3)
     return {'text_from_llm': gen_text, 'tokens_per_sec': tokens_per_sec}
     
@@ -61,6 +64,8 @@ generator = AutoModelForCausalLM.from_pretrained(model_path,
 )
 # load the tokenizer
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
+
+pipe_llama7b_chat = pipeline(task="text-generation", model=generator, tokenizer=tokenizer, max_length=200, return_full_text=False) 
 
 prompt_template = f"<s>[INST] {{dialogue}} [/INST]"
 
