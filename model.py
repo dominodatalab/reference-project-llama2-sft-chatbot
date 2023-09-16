@@ -8,6 +8,7 @@ import transformers
      
 from random import randint
 from transformers import AutoTokenizer
+from transformers import GenerationConfig 
      
 cuda_install_dir = '/'.join(nvidia.__file__.split('/')[:-1]) + '/cuda_runtime/lib/'
 os.environ['LD_LIBRARY_PATH'] =  cuda_install_dir
@@ -35,13 +36,24 @@ def generate(prompt: str = None, new_tokens: int = 200):
             
     # Construct the prompt for the model
     prompt = prompt_template.format(dialogue=prompt)
-    # Tokenize the prompt
-    tokens = tokenizer.convert_ids_to_tokens(tokenizer.encode(prompt))
-    max_length = len(tokens) + new_tokens
+    
     tokens_per_sec = 0
-    start_time = time.time()
-    results = generator.generate_batch([tokens], sampling_topk=10, max_length=new_tokens, include_prompt_in_result=False)
-    end_time = time.time()
-    output_text = tokenizer.decode(results[0].sequences_ids[0])
-    tokens_per_sec = round(new_tokens / (end_time - start_time),3)
-    return {'text_from_llm': output_text, 'tokens_per_sec': tokens_per_sec}
+    start_time = time.perf_counter()
+    input_ids = tokenizer(test_sample, return_tensors="pt").input_ids
+    input_ids = input_ids.to('cuda')
+    max_new_tokens = 200
+
+    generation_config = GenerationConfig(
+            pad_token_id=tokenizer.pad_token_id,
+            max_new_tokens = max_new_tokens
+        )
+
+    with torch.no_grad():
+        generated_ids = model.generate(input_ids, generation_config=generation_config)
+    
+    gen_text = tokenizer.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
+    end_time = time.perf_counter()
+    gen_text = gen_text.replace(f"[INST] {prompt} [/INST]", '')
+    tokens_per_sec = round(max_new_tokens / (end_time - start_time),3)
+    return {'text_from_llm': gen_text, 'tokens_per_sec': tokens_per_sec}
+    
