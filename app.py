@@ -10,7 +10,7 @@ import transformers
 from random import randint
 from streamlit.web.server import websocket_headers
 from streamlit_chat import message
-from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
+from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig, pipeline
 
 
 #Generate the output from the LLM
