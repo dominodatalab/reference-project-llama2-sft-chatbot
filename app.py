@@ -24,6 +24,7 @@ def generate(prompt: str = None, new_tokens: int = 200):
     tokens_per_sec = 0
     start_time = time.perf_counter()
     gen_text = pipe_llama7b_chat(user_input)
+    end_time = time.perf_counter()
     
 #     input_ids = tokenizer(user_input, return_tensors="pt").input_ids
 #     input_ids = input_ids.to('cuda')
