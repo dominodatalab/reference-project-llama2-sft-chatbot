@@ -20,8 +20,7 @@ def generate(prompt: str = None, pct_new_tokens: float = 0.2):
         return {'text_from_llm': "Please provide a prompt", 'tokens_per_sec': -1}
     # Tokenize the prompt
     tokens = tokenizer.convert_ids_to_tokens(tokenizer.encode(prompt))
-    input_length = len(tokens)
-    new_tokens = round(pct_new_tokens*input_length)
+    new_tokens = 200
     tokens_per_sec = 0
     start_time = time.time()
     results = generator.generate_batch([tokens], sampling_topk=10, max_length=new_tokens, include_prompt_in_result=False)
@@ -52,7 +51,7 @@ generator = AutoModelForCausalLM.from_pretrained(model_path,
 # load the tokenizer
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
 
-prompt_template = f"<s>[INST] {{prompt}} [/INST]"
+prompt_template = f"<s>[INST] {{dialogue}} [/INST]"
 
 
 # Initialise session state variables
