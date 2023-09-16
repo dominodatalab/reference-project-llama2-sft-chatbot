@@ -10,7 +10,7 @@ import transformers
 from random import randint
 from streamlit.web.server import websocket_headers
 from streamlit_chat import message
-from transformers import AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
 def generate(prompt: str = None, pct_new_tokens: float = 0.2):
@@ -32,9 +32,8 @@ cuda_install_dir = '/'.join(nvidia.__file__.split('/')[:-1]) + '/cuda_runtime/li
 os.environ['LD_LIBRARY_PATH'] =  cuda_install_dir
 
 
-# Load the ctranslate model
+# Load the Huggingface model
 model_path = '/mnt/artifacts/llama2/final_merged_checkpoint/'
-hf_model_name = 'tiiuae/falcon-7b'
 model_device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # load the Huggingface model
