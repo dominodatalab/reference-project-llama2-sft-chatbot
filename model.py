@@ -53,6 +53,6 @@ def generate(prompt: str = None, new_tokens: int = 200):
     gen_text = tokenizer.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     end_time = time.perf_counter()
     gen_text = gen_text.replace(f"[INST] {prompt} [/INST]", '')
-    tokens_per_sec = round(max_new_tokens / (end_time - start_time),3)
+    tokens_per_sec = round(new_tokens / (end_time - start_time),3)
     return {'text_from_llm': gen_text, 'tokens_per_sec': tokens_per_sec}
     
