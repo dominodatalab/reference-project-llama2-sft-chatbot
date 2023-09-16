@@ -1,3 +1,4 @@
+import ctranslate2
 import requests
 import streamlit as st
 
@@ -10,11 +11,12 @@ import transformers
 from random import randint
 from streamlit.web.server import websocket_headers
 from streamlit_chat import message
-from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig, pipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 
 
 #Generate the output from the LLM
-def generate(prompt: str = None, new_tokens: int = 200):
+# def generate(prompt: str = None, new_tokens: int = 200):
+def generate(prompt: str = None, pct_new_tokens: float = 1.2):
     if prompt is None:
         return 'Please provide a prompt.'
             
@@ -23,8 +25,17 @@ def generate(prompt: str = None, new_tokens: int = 200):
     
     tokens_per_sec = 0
     start_time = time.perf_counter()
-    gen_text = pipe_llama7b_chat(user_input)
-    end_time = time.perf_counter()
+    tokens = tokenizer.convert_ids_to_tokens(tokenizer.encode(user_input))
+    input_length = len(tokens)
+    new_tokens = round(pct_new_tokens*input_length)
+    tokens_per_sec = 0
+    start_time = time.time()
+    results = generator.generate_batch([tokens], sampling_topk=10, max_length=new_tokens, include_prompt_in_result=False)
+    end_time = time.time()
+    output_text = tokenizer.decode(results[0].sequences_ids[0])
+    tokens_per_sec = round(new_tokens / (end_time - start_time),3)
+    
+#     gen_text = pipe_llama7b_chat(user_input)
     
 #     input_ids = tokenizer(user_input, return_tensors="pt").input_ids
 #     input_ids = input_ids.to('cuda')
@@ -41,7 +52,6 @@ def generate(prompt: str = None, new_tokens: int = 200):
 #     end_time = time.perf_counter()
 #     gen_text = gen_text.replace(f"[INST] {prompt} [/INST]", '')
 
-    tokens_per_sec = round(new_tokens / (end_time - start_time),3)
     return {'text_from_llm': gen_text, 'tokens_per_sec': tokens_per_sec}
     
     
@@ -49,24 +59,28 @@ cuda_install_dir = '/'.join(nvidia.__file__.split('/')[:-1]) + '/cuda_runtime/li
 os.environ['LD_LIBRARY_PATH'] =  cuda_install_dir
 
 
-# Load the Huggingface model
-# model_path = '/mnt/artifacts/llama2/final_merged_checkpoint/'
-model_path = 'subirmansukhani/llama-2-7b-miniguanaco'
+# Load the model
+model_path = '/mnt/data/llama2-ct'
 model_device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+# load the ctranslate model
+generator = ctranslate2.Generator(model_path, device=model_device)
+tokenizer = transformers.AutoTokenizer.from_pretrained('subirmansukhani/llama-2-7b-miniguanaco')
+
 
 # load the Huggingface model
 # Reload model in FP16 and merge it with LoRA weights
-generator = AutoModelForCausalLM.from_pretrained(model_path,
-    low_cpu_mem_usage=True,
-    return_dict=True,
+# generator = AutoModelForCausalLM.from_pretrained(model_path,
+#     low_cpu_mem_usage=True,
+#     return_dict=True,
 #     cache_dir="/mnt/artifacts/llama2-model-cache/",
-    torch_dtype=torch.float16,
-    device_map='auto',
-)
+#     torch_dtype=torch.float16,
+#     device_map='auto',
+# )
 # load the tokenizer
-tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
+# tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
 
-pipe_llama7b_chat = pipeline(task="text-generation", model=generator, tokenizer=tokenizer, max_length=200, return_full_text=False) 
+# pipe_llama7b_chat = pipeline(task="text-generation", model=generator, tokenizer=tokenizer, max_length=200, return_full_text=False) 
 
 prompt_template = f"<s>[INST] {{dialogue}} [/INST]"
 
