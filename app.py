@@ -1,8 +1,6 @@
 import requests
 import streamlit as st
 
-
-import ctranslate2
 import nvidia
 import os
 import time
