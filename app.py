@@ -65,7 +65,7 @@ generator = AutoModelForCausalLM.from_pretrained(model_path,
 # load the tokenizer
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
 
-pipe_llama7b_chat = pipeline(task="text-generation", model=generator, tokenizer=tokenizer, max_length=200, return_full_text=False, device=1) 
+pipe_llama7b_chat = pipeline(task="text-generation", model=generator, tokenizer=tokenizer, max_length=200, return_full_text=False) 
 
 prompt_template = f"<s>[INST] {{dialogue}} [/INST]"
 
