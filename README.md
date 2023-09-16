@@ -1,1 +1,1 @@
-# llama2-sft-translation
+# llama2-sft-chatbot
