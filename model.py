@@ -1,5 +1,5 @@
 # Import all the dependencies
-     
+import ctranslate2
 import nvidia
 import os
 import time
