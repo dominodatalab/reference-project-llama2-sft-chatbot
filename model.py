@@ -24,7 +24,7 @@ model_device = 'cuda' if torch.cuda.is_available() else 'cpu'
 generator = ctranslate2.Generator(model_path, device=model_device)
 tokenizer = transformers.AutoTokenizer.from_pretrained('subirmansukhani/llama-2-7b-miniguanaco')
 
-pct_new_tokens = 1.2
+
 
 
 # generator = AutoModelForCausalLM.from_pretrained(model_path,
@@ -40,7 +40,7 @@ pct_new_tokens = 1.2
 prompt_template = f"<s>[INST] {{dialogue}} [/INST]"
      
 #Generate the output from the LLM
-def generate(prompt: str = None, new_tokens: int = 200):
+def generate(prompt: str = None, pct_new_tokens: float = 1.2):
     if prompt is None:
         return 'Please provide a prompt.'
             
