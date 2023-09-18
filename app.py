@@ -138,4 +138,4 @@ with container:
             for i in range(len(st.session_state['generated'])):
                 message(st.session_state["past"][i], is_user=True, key=str(i) + '_user')
                 message(st.session_state["generated"][i], logo='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk6e8aarUy37BOHMTSk-TUcs4AyAy3pfAHL-F2K49KHNEbI0QUlqWJFEqXYQvlBdYMMJA&usqp=CAU', key=str(i))
-                st.write(f"Tokens generated per sec: {st.session_state['tokens_sec'][i]}")
+                # st.write(f"Tokens generated per sec: {st.session_state['tokens_sec'][i]}")
