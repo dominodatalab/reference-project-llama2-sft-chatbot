@@ -57,5 +57,5 @@ def generate(prompt: str = None, pct_new_tokens: float = 1.2):
     output_text = tokenizer.decode(results[0].sequences_ids[0])
     tokens_per_sec = round(new_tokens / (end_time - start_time),3)
     
-    return {'text_from_llm': gen_text, 'tokens_per_sec': tokens_per_sec}
+    return {'text_from_llm': output_text, 'tokens_per_sec': tokens_per_sec}
     
