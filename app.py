@@ -52,7 +52,7 @@ def generate(prompt: str = None, pct_new_tokens: float = 1.2):
 #     end_time = time.perf_counter()
 #     gen_text = gen_text.replace(f"[INST] {prompt} [/INST]", '')
 
-    return {'text_from_llm': gen_text, 'tokens_per_sec': tokens_per_sec}
+    return {'text_from_llm': output_text, 'tokens_per_sec': tokens_per_sec}
     
     
 cuda_install_dir = '/'.join(nvidia.__file__.split('/')[:-1]) + '/cuda_runtime/lib/'
