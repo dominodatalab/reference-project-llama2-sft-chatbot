@@ -70,7 +70,7 @@ try: generator
 except NameError: 
     generator = ctranslate2.Generator(model_path, device=model_device)
 
-try tokenizer
+try: tokenizer
 except NameError:
     tokenizer = transformers.AutoTokenizer.from_pretrained('subirmansukhani/llama-2-7b-miniguanaco')
 
