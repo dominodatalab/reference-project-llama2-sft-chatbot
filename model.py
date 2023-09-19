@@ -58,5 +58,5 @@ def generate(prompt: str = None, pct_new_tokens: float = 1.2):
     tokens_per_sec = round(new_tokens / (end_time - start_time),3)
     
     # return {'text_from_llm': output_text, 'tokens_per_sec': tokens_per_sec}
-     return {'text_from_llm': output_text}
+    return {'text_from_llm': output_text}
     
