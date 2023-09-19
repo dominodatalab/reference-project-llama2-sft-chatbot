@@ -66,8 +66,16 @@ model_device = 'cuda' if torch.cuda.is_available() else 'cpu'
 # model_device = 'cpu'
 
 # load the ctranslate model
-generator = ctranslate2.Generator(model_path, device=model_device)
-tokenizer = transformers.AutoTokenizer.from_pretrained('subirmansukhani/llama-2-7b-miniguanaco')
+try: generator
+except NameError: 
+    generator = ctranslate2.Generator(model_path, device=model_device)
+
+try tokenizer
+except NameError:
+    tokenizer = transformers.AutoTokenizer.from_pretrained('subirmansukhani/llama-2-7b-miniguanaco')
+
+# generator = ctranslate2.Generator(model_path, device=model_device)
+# tokenizer = transformers.AutoTokenizer.from_pretrained('subirmansukhani/llama-2-7b-miniguanaco')
 
 
 # load the Huggingface model
