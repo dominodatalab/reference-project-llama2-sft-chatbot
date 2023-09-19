@@ -49,7 +49,8 @@ def generate(prompt: str = None, pct_new_tokens: float = 1.2):
     
     tokens = tokenizer.convert_ids_to_tokens(tokenizer.encode(user_input))
     input_length = len(tokens)
-    new_tokens = round(pct_new_tokens*input_length)
+    # new_tokens = round(pct_new_tokens*input_length)
+    new_tokens = 750
     tokens_per_sec = 0
     start_time = time.time()
     results = generator.generate_batch([tokens], sampling_topk=10, max_length=new_tokens, include_prompt_in_result=False)
