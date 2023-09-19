@@ -62,8 +62,8 @@ os.environ['LD_LIBRARY_PATH'] =  cuda_install_dir
 
 # Load the model
 model_path = '/mnt/artifacts/llama2-ct'
-# model_device = 'cuda' if torch.cuda.is_available() else 'cpu'
-model_device = 'cpu'
+model_device = 'cuda' if torch.cuda.is_available() else 'cpu'
+# model_device = 'cpu'
 
 # load the ctranslate model
 generator = ctranslate2.Generator(model_path, device=model_device)
