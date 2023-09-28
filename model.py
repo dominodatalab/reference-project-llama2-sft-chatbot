@@ -15,7 +15,7 @@ os.environ['LD_LIBRARY_PATH'] =  cuda_install_dir
      
 # Load the ctranslate model
 model_device = 'cuda' if torch.cuda.is_available() else 'cpu'
-# model_path = '/mnt/artifacts/llama2/final_merged_checkpoint/'
+
 
 model_path = '/mnt/artifacts/llama2-ct'
 model_device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -25,17 +25,6 @@ generator = ctranslate2.Generator(model_path, device=model_device)
 tokenizer = transformers.AutoTokenizer.from_pretrained('subirmansukhani/llama-2-7b-miniguanaco')
 
 
-
-
-# generator = AutoModelForCausalLM.from_pretrained(model_path,
-#     low_cpu_mem_usage=True,
-#     return_dict=True,
-#     cache_dir="/mnt/artifacts/llama2-model-cache/",
-#     torch_dtype=torch.float16,
-#     device_map='auto',
-# )
-# # load the tokenizer
-# tokenizer = transformers.AutoTokenizer.from_pretrained(model_path)
 
 prompt_template = f"<s>[INST] {{dialogue}} [/INST]"
      
