@@ -1,0 +1,2 @@
+# This is not a full list, its used with the LLM DSE
+ctranslate2==3.17.1
