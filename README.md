@@ -65,6 +65,6 @@ vscode:
 Please change the value in `start` according to your Domino version.
 
 
-You also need to make sure that the hardware tier running the notebook or the fine-tuning script has sufficient resources. A GPU with >=16GB of VRAM is recommended. This project was tested on a V100 with 16GB VRAM
+You also need to make sure that the hardware tier running the notebook or the fine-tuning script has sufficient resources. A GPU with >=16GB of VRAM is recommended. This project was tested on a `V100` with 16GB VRAM
 
 
