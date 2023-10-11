@@ -43,7 +43,7 @@ The **model.py** provides a scoring function with the following signature: `gene
 }
 ```
 
-# Set up instructions
+## Set up instructions
 
 This project requires the following [compute environments](https://docs.dominodatalab.com/en/latest/user_guide/f51038/environments/) to be present. Please ensure the "Automatically make compatible with Domino" checkbox is selected while creating the environment.
 
