@@ -18,7 +18,7 @@ The assets available in this project are:
 
 * **llama2_guanaco.ipynb** - A notebook, illustrating the process of  fine tuning <> on the <> dataset
 * **ct2_converter.ipynb** - A notebook that shows how to convert the fine tuned Huggingface model to an optimized `ctranslate2` model
-* **model.py** - A scoring function, which is used to deploy the fine-tunned model as a [Domino API](https://docs.dominodatalab.com/en/latest/user_guide/8dbc91/host-models-as-rest-apis/)
+* **model.py** - A scoring function, which is used to deploy the fine-tunned model as a [Domino model API](https://docs.dominodatalab.com/en/latest/user_guide/8dbc91/host-models-as-rest-apis/)
 * **app_streaming.py** - A Python file that embeds the `ctranslate2` model and allows for users to interact with the model as a Streamlit app
 * **app.sh** - Launch instructions for the accompanying Streamlit app.
 
