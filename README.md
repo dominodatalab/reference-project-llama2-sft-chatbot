@@ -31,7 +31,7 @@ The assets available in this project are:
 * **app.py** - 
 * **app.sh** - Launch instructions for the accompanying Streamlit app
 
-# Model API calls
+## Model API calls
 
 The **model.py** provides a scoring function with the following signature: `generate(prompt)`. To test it, you could use the following JSON payload:
 
