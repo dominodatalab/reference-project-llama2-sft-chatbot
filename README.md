@@ -12,7 +12,7 @@ Fine-tuning a pre-trained LLM is a commonly used technique for solving NLP probl
 
 2. The model undergoes a process of domain specific adaptive fine-tuning, which produces a new model with narrower focus or better alignment. This new model is better prepared to address domain-specific challenges as it is now closer to the expected distribution of the target data or responses the user expects. 
 
-In this demo project we use the <> dataset , which provides <> samples of <>. This dataset is used in conjuction with <model>, which we fine-tune for the purpose of building a conversational assistant
+In this demo project we use the [mlabonne/guanaco-llama2-1k](https://huggingface.co/datasets/mlabonne/guanaco-llama2-1k) dataset , which provides 1000 samples of the excellent [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco) dataset, processed to match Llama 2's prompt format . This dataset is used in conjuction with [NousResearch/Llama-2-7b-chat-hf](https://huggingface.co/NousResearch/Llama-2-7b-chat-hf), which we fine-tune for the purpose of building a conversational assistant
 
 The assets available in this project are:
 
