@@ -16,8 +16,8 @@ os.environ['LD_LIBRARY_PATH'] =  cuda_install_dir
 # Load the ctranslate model
 model_device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-
-model_path = '/mnt/artifacts/llama2-ct'
+# change this path to where you have stored your model
+model_path = '/mnt/artifacts/llama2/llama2-ct'
 model_device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # load the ctranslate model
