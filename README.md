@@ -34,6 +34,8 @@ The **model.py** provides a scoring function with the following signature: `gene
 }
 ```
 
+Please note that in order to run the model API you need `ctranslate2 3.17.1` which is not part of the environment base mentioned in the section below. You will have to add this dependency to the environment Dockerfile instructions. 
+
 ## Set up instructions
 
 This project requires the following [compute environments](https://docs.dominodatalab.com/en/latest/user_guide/f51038/environments/) to be present. Please ensure the "Automatically make compatible with Domino" checkbox is selected while creating the environment.
