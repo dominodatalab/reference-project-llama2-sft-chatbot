@@ -38,7 +38,7 @@ The **model.py** provides a scoring function with the following signature: `gene
 }
 ```
 
-Please note that in order to run the model API you need `ctranslate2 3.17.1` which is not part of the environment base mentioned in the section below. You will have to add this dependency to the environment Dockerfile instructions. 
+**Please note that in order to run the model API you need `ctranslate2 3.17.1` which is not part of the environment base mentioned in the section below. You will have to add this dependency to the environment Dockerfile instructions.** 
 
 ## Set up instructions
 
