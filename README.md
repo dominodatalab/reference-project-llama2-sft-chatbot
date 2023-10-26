@@ -72,5 +72,25 @@ vscode:
 
 Please change the value in `start` according to your Domino version.
 
+In case you want to create a custom environment for the project, you can do so by specifying the following whwn creating a custom environment
+
+**Environment Base**
+***custom base image*** `nvcr.io/nvidia/pytorch:22.12-py3`
+
+***Dockerfile instructions***
+```
+RUN pip install -q -U trl transformers accelerate git+https://github.com/huggingface/peft.git
+RUN pip install -q datasets bitsandbytes einops mlflow langchain langsmith openai textstat evaluate rapidfuzz tiktoken
+RUN pip install --no-cache-dir Flask Flask-Compress Flask-Cors jsonify uWSGI streamlit "ctranslate2==3.17.1"
+# RUN pip install streamlit-chat
+RUN pip install -i https://test.pypi.org/simple/ streamlit-chat-domino 
+RUN pip uninstall --yes transformer-engine
+RUN pip uninstall -y apex
+
+RUN pip uninstall --yes torch torchvision torchaudio
+
+RUN pip install torch  --index-url https://download.pytorch.org/whl/cu118
+```
+
 
 
