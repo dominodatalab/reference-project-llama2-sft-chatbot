@@ -75,6 +75,7 @@ Please change the value in `start` according to your Domino version.
 In case you want to create a custom environment for the project, you can do so by specifying the following whwn creating a custom environment
 
 **Environment Base**
+
 ***custom base image*** `nvcr.io/nvidia/pytorch:22.12-py3`
 
 ***Dockerfile instructions***
