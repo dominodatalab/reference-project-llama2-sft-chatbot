@@ -1,7 +1,14 @@
 # llama2-sft-chatbot
 
 ## License
-This template is licensed to Customer subject to the terms of the license agreement between Domino and the Customer on file.
+This template is licensed under Apache 2.0 and contains the following components: 
+* ctranslate [MIT](https://github.com/OpenNMT/CTranslate2/blob/master/LICENSE)
+* Llama2 [License](https://ai.meta.com/llama/license/)
+* MLFlow [Apache 2.0](https://github.com/mlflow/mlflow/blob/master/LICENSE.txt)
+* pytorch [Caffe 2](https://github.com/pytorch/pytorch/blob/main/LICENSE)
+* Transformer [Apache 2.0](https://github.com/huggingface/transformers/blob/main/LICENSE)
+* peft [Apache 2.0](https://github.com/huggingface/peft/blob/main/LICENSE)
+* SFTTrainer [Apache 2.0](https://github.com/huggingface/trl/blob/main/trl/trainer/sft_trainer.py)
 
 ## About this project
 In this project we demonstrate the use of a pre-trained Large Language Model (LLM) in Domino and the process of fine-tuning the model for a specific task. We will convert this model using `ctranslate2` to optimize its throughput and deploy it as a model API and app in Domino.
