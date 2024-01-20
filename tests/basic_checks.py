@@ -47,7 +47,7 @@ class TestLLama2SFT(unittest.TestCase):
     def test_library_trl_installed(self):
         """ Test if trl library is installed """
         trl_installed = importlib.util.find_spec("trl") is not None
-        self.assertTrue(bitsandbytes_installed, "trl is not installed")
+        self.assertTrue(trl_installed, "trl is not installed")
 
 if __name__ == '__main__':
     unittest.main()
