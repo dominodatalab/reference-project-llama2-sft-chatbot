@@ -1,0 +1,69 @@
+{
+  "title": "Chatbot using Fine Tuned LLM",
+  "id": "Chatbot using Fine Tuned LLM",
+  "description": "This template demonstrates how to build a Chatbot by fine-tuning the Llama2 model using Supervised Fine Tuning (SFT).",
+  "base64Logo": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEyMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHg9IjU0IiB5PSIyMiIgd2lkdGg9IjU0IiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzY3ODBGRiIvPgo8cmVjdCB4PSIxMi41IiB5PSI0MC41IiB3aWR0aD0iNzMiIGhlaWdodD0iMTkiIHJ4PSIzLjUiIGZpbGw9IiNGNUY1RjUiIHN0cm9rZT0iI0UzRTNFMyIvPgo8cmVjdCB4PSIzNCIgeT0iNjgiIHdpZHRoPSI3NCIgaGVpZ2h0PSIxMCIgcng9IjQiIGZpbGw9IiM2NzgwRkYiLz4KPC9zdmc+Cg==",
+  "categories": [
+    "Chatbot",
+    "Fine Tuning",
+    "LLM"
+  ],
+  "mainRepository": {
+    "uri": "https://github.com/dominodatalab/llama2-sft-chatbot",
+    "ref": {
+      "type": "commitId",
+      "value": "8bd54fbf68bd1b69333bdd00105621cbfbf14d0a"
+    },
+    "serviceProvider": "github"
+  },
+  "owner": {
+    "name": "Domino",
+    "link": "https://domino.ai"
+  },
+  "models": [
+    {
+      "name": "Llama2",
+      "link": "https://huggingface.co/NousResearch/Nous-Hermes-llama-2-7b",
+      "size": {
+        "value": 28,
+        "units": "GB"
+      },
+      "source": null
+    }
+  ],
+  "license": {
+    "name": "Apache 2.0",
+    "link": "https://github.com/dominodatalab/llama2-sft-chatbot#license"
+  },
+  "data": {
+    "name": "This template uses the mlabonne/guanaco-llama2-1k dataset , which provides 1000 samples of the excellent timdettmers/openassistant-guanaco dataset, processed to match Llama 2's prompt format.",
+    "link": "https://huggingface.co/datasets/mlabonne/guanaco-llama2-1k"
+  },
+  "dataFormat": "Text",
+  "recommended": false,
+  "prerequisites": [
+    {
+      "value": "Please note that in order to run the model API you need ctranslate2 3.17.1 which is not part of the default environment of the project. You will have to add this dependency to the environment Dockerfile instructions.",
+      "link": "https://github.com/dominodatalab/llama2-sft-chatbot#model-api-calls"
+    }
+  ],
+  "goals": null,
+  "hardwareTier": {
+    "value": "A GPU with >=16GB of VRAM is recommended. It was tested on a V100 with 16GB VRAM.",
+    "link": null
+  },
+  "environmentKey": null,
+  "environmentReqs": {
+    "value": "See the README.md in the code repository.",
+    "link": "https://github.com/dominodatalab/llama2-sft-chatbot#model-api-calls"
+  },
+  "importedRepositories": null,
+  "supportedDominoVersions": [
+    "5.10.0"
+  ],
+  "projectSettings": null,
+  "test": {
+    "test_command": "tests/basic_checks.py",
+    "hardware_tier_id": "gpu-k8s"
+  }
+}
